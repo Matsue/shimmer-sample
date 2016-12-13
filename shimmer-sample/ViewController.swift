@@ -7,19 +7,23 @@
 //
 
 import UIKit
+import Shimmer
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var shimmeringView: FBShimmeringView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        shimmeringView.isShimmering = true
+        shimmeringView.shimmeringBeginFadeDuration = 0.3
+        shimmeringView.shimmeringOpacity = 0.3
+        
+        let contentView = UINib(nibName: "ContentView", bundle: nil).instantiate(withOwner: self, options: nil)[0] as! UIView
+        contentView.frame = shimmeringView.frame
+        shimmeringView.contentView = contentView
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
 
 }
 
